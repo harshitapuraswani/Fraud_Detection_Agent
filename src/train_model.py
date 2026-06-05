@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, accuracy_score
 import joblib
+import os
 
 # Load dataset
 df = pd.read_csv("data/fraud_transactions.csv")
@@ -50,7 +51,10 @@ y_pred = model.predict(X_test)
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print("\nReport:\n", classification_report(y_test, y_pred))
 
+os.makedirs("models", exist_ok=True)
+
 # Save model
 joblib.dump(model, "models/fraud_model.pkl")
+joblib.dump(X.columns.tolist(), "models/model_columns.pkl")
 
-print("Model saved successfully!")
+print("Model and columnssaved successfully!")
