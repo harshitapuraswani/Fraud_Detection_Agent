@@ -1,0 +1,2 @@
+case_id,transaction_id,customer_id,risk_score,ml_prediction,decision,reasons,status,created_at
+CASE-0001,T123,C456,0.85,fraud,REVIEW,"high_amount, velocity",OPEN,2026-06-23 03:27:13.944994

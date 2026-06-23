@@ -21,3 +21,6 @@ for reason in result["reasons"]:
 
 print("\nExplanation:")
 print(result["explanation"])
+
+if "case_id" in result:
+    print(f"\n📋 Case Created: {result['case_id']}")

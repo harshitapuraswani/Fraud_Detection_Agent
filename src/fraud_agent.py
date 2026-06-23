@@ -1,6 +1,6 @@
 import pandas as pd
 import joblib
-
+from alert_manager import create_alert
 from risk_engine import calculate_risk
 from llm_reasoning import explain_fraud
 
@@ -55,3 +55,10 @@ def fraud_agent(transaction):
         "reasons": reasons,
         "explanation": explanation
     }
+
+    if (
+    result["decision"] == "FRAUD ALERT 🚨"
+    or result["ml_prediction"] == 1
+):
+     case_id = create_alert(transaction, result)
+    result["case_id"] = case_id
