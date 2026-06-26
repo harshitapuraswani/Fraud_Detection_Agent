@@ -1,8 +1,9 @@
 import pandas as pd
-import joblib
+import joblib 
 from alert_manager import create_alert
 from risk_engine import calculate_risk
 from llm_reasoning import explain_fraud
+from investigation_copilot import generate_investigation_report
 
 # -----------------------------
 # LOAD MODEL + COLUMNS
@@ -62,3 +63,5 @@ def fraud_agent(transaction):
 ):
      case_id = create_alert(transaction, result)
     result["case_id"] = case_id
+
+    result["explanation"] = generate_investigation_report(transaction, result) 

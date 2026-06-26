@@ -4,10 +4,15 @@ import pandas as pd
 # Load sample transaction
 df = pd.read_csv("data/fraud_transactions.csv")
 
-transaction = df.iloc[0].to_dict()
+fraud_samples = df[df["fraud"] == 1].sample(2)
+legit_samples = df[df["fraud"] == 0].sample(2)
+
+test_df = pd.concat([fraud_samples, legit_samples])
 
 # Run agent
-result = fraud_agent(transaction)
+for i, row in test_df.iterrows():
+    transaction = row.to_dict()
+    result = fraud_agent(transaction)
 
 print("\n===== FRAUD AGENT RESULT =====")
 

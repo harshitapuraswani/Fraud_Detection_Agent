@@ -46,8 +46,8 @@ def create_alert(transaction, result):
 
     return case_id
 
-def get_alert_queue():
-    if not os.path.exists(ALERT_FILE):
+    def get_alert_queue():
+     if not os.path.exists(ALERT_FILE):
         return pd.DataFrame()
     return pd.read_csv(ALERT_FILE)
 
